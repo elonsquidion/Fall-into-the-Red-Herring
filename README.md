@@ -74,6 +74,6 @@ Pitch deck kalian mencakup minimal:
 - Execution Plan (+ Business Model)
 
 #### Jika memiliki pertanyaan lebih lanjut, silahkan tanyakan di Sheets QnA berikut:
-https://bit.ly/TanyakanMina
-https://bit.ly/TanyakanMina
+https://bit.ly/TanyakanMina  
+https://bit.ly/TanyakanMina  
 https://bit.ly/TanyakanMina
