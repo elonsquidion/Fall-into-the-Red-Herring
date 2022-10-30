@@ -10,12 +10,8 @@ config_version=4
 
 [application]
 
-<<<<<<< Updated upstream
-config/name="Fall into the Red Herring"
-=======
 config/name="Fall Into the Red Herring"
 run/main_scene="res://Scenes/main.tscn"
->>>>>>> Stashed changes
 config/icon="res://icon.png"
 <<<<<<<Updatedupstreamconfig/name="Fall into the Red Herring"
 
