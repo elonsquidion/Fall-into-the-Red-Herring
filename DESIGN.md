@@ -21,3 +21,7 @@
 1. Roots to atk (samping, normal atk, -1 hp)
 2. Duri dari bawah (2nd type atk, -2 hp)
 3. Area racun (kanan/kiri, +- 5 s, 1 s = -1 heart)
+
+
+## More Information
+https://docs.google.com/document/d/1Ifye5eDD60nN9VqFOQdd60vmriSrIG4JLryg9Vocgh4/edit#
