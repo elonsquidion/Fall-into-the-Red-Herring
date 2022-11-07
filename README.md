@@ -80,7 +80,7 @@ https://bit.ly/TanyakanMina
 
 
 
+nyoba konflik
 
-
-nyoba
+nyodfbaadf
 
