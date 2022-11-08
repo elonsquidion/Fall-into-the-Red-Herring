@@ -9,6 +9,17 @@ var highscore = 0
 var direction = Vector2.ZERO
 var movement = Vector2.ZERO
 
+func _ready():
+#	reset_highscore()
+	load_score()
+	print(highscore)
+	var score_bar = get_parent().get_node("Highscore")
+	score_bar.text = "Highscore: " + str(highscore)
+
+func _process(_delta):
+	highscore = max(highscore, score)
+	print(highscore)
+
 func load_score():
 	var f = File.new()
 	if f.file_exists(highscore_file):
@@ -18,14 +29,24 @@ func load_score():
 		highscore = int(content)
 		f.close()
 
-func save_score():
+func save_score(new):
 	var f = File.new()
 	f.open(highscore_file, File.WRITE)
-	f.store_string(str(highscore))
+	print("oii jancokkk")
+	print(str(highscore))
+	f.store_string(str(new))
+	f.close()
+	f.open(highscore_file, File.READ)
+	var content = f.get_as_text()
+	print(content)
 	f.close()
 
-func _ready():
-	load_score()
+func reset_highscore():
+	var f = File.new()
+	f.open(highscore_file, File.WRITE)
+	f.store_string(str(0))
+	f.close()
+
 
 func buff():
 	if hit_points == 0:
@@ -67,17 +88,6 @@ func mechanics():
 	elif Input.is_action_just_pressed("up"):
 		global_position.y -= 70
 	
-func _process(_delta):
-	var f = File.new()
-	if f.file_exists(highscore_file):
-		f.open(highscore_file, File.READ)
-		var content = f.get_as_text()
-		var int_content = int(content)
-		highscore = max(highscore, int_content)
-#		print(content)
-		f.close()
-#	print(highscore)
-	highscore = max(highscore, score)
 
 
 func _physics_process(_delta):
@@ -93,7 +103,7 @@ func take_damage(body, damage):
 	body.hit_points -= damage
 	hp_bar.value = body.hit_points
 	if body.hit_points == 0:
-		save_score()
+		save_score(body.highscore)
 		body.get_tree().reload_current_scene()
 
 func add_point(body, point):
@@ -101,5 +111,7 @@ func add_point(body, point):
 	var highscore_bar = body.get_parent().get_node("Highscore")
 	body.score += point
 	score_bar.text = "Score: " +  str(body.score)
-	print(body.highscore)
-	highscore_bar.text = "Highscore: " + str(body.highscore + 1)
+	if body.score <= body.highscore:
+		highscore_bar.text = "Highscore: " + str(body.highscore)
+	else:
+		highscore_bar.text = "Highscore: " + str(body.highscore + 1)
