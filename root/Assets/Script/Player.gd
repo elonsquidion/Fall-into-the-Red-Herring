@@ -18,7 +18,7 @@ func _ready():
 
 func _process(_delta):
 	highscore = max(highscore, score)
-	print(highscore)
+#	print(highscore)
 
 func load_score():
 	var f = File.new()
@@ -87,8 +87,6 @@ func mechanics():
 		global_position.y += 70
 	elif Input.is_action_just_pressed("up"):
 		global_position.y -= 70
-	
-
 
 func _physics_process(_delta):
 	mechanics()
