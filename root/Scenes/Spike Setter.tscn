@@ -8,13 +8,13 @@ script = ExtResource( 1 )
 [node name="Spike Positions" type="Node2D" parent="."]
 
 [node name="Left" type="Position2D" parent="Spike Positions"]
-position = Vector2( 210, 0 )
+position = Vector2( 480, 0 )
 
 [node name="Right" type="Position2D" parent="Spike Positions"]
-position = Vector2( 350, 0 )
+position = Vector2( 800, 0 )
 
 [node name="Center" type="Position2D" parent="Spike Positions"]
-position = Vector2( 280, 0 )
+position = Vector2( 640, 0 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

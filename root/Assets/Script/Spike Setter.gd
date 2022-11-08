@@ -11,9 +11,9 @@ func _on_Timer_timeout():
 	var spike_instance = spike.instance()
 	var index = randi() % spawn_positions.size()
 	spike_instance.global_position = spawn_positions[index].global_position
-	if index == 0 or index == 2:
-		spike_instance.scale.x = 5
-	else:
-		spike_instance.scale.x = 7
+#	if index == 0 or index == 2:
+#		spike_instance.scale.x = 5
+#	else:
+#		spike_instance.scale.x = 8
 	add_child(spike_instance)
 	

@@ -12,33 +12,32 @@ var movement = Vector2.ZERO
 func _ready():
 #	reset_highscore()
 	load_score()
-	print(highscore)
 	var score_bar = get_parent().get_node("Highscore")
 	score_bar.text = "Highscore: " + str(highscore)
 
 func _process(_delta):
 	highscore = max(highscore, score)
-#	print(highscore)
+
+func _physics_process(_delta):
+	mechanics()
+	
+	if Input.is_action_just_pressed("activate_buff"):
+		buff()
+		
+	movement = move_and_slide(movement)
 
 func load_score():
 	var f = File.new()
 	if f.file_exists(highscore_file):
 		f.open(highscore_file, File.READ)
 		var content = f.get_as_text()
-		print(content)
 		highscore = int(content)
 		f.close()
 
 func save_score(new):
 	var f = File.new()
 	f.open(highscore_file, File.WRITE)
-	print("oii jancokkk")
-	print(str(highscore))
 	f.store_string(str(new))
-	f.close()
-	f.open(highscore_file, File.READ)
-	var content = f.get_as_text()
-	print(content)
 	f.close()
 
 func reset_highscore():
@@ -78,23 +77,16 @@ func slow_movement():
 	pass
 
 func mechanics():
-	if Input.is_action_just_pressed("right"):
-		global_position.x += 70
-	elif Input.is_action_just_pressed("left"):
-		global_position.x -= 70
+	if Input.is_action_just_pressed("right") and position.x < 1200:
+		global_position.x += 160
+	elif Input.is_action_just_pressed("left") and position.x > 80:
+		global_position.x -= 160
 		
-	if Input.is_action_just_pressed("down"):
-		global_position.y += 70
+	if Input.is_action_just_pressed("down") and position.y < 560:
+		global_position.y += 160
 	elif Input.is_action_just_pressed("up"):
-		global_position.y -= 70
+		global_position.y -= 160
 
-func _physics_process(_delta):
-	mechanics()
-	
-	if Input.is_action_just_pressed("activate_buff"):
-		buff()
-		
-	movement = move_and_slide(movement)
 
 func take_damage(body, damage):
 	var hp_bar = body.get_parent().get_node("HP Bar")
