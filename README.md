@@ -77,3 +77,10 @@ Pitch deck kalian mencakup minimal:
 https://bit.ly/TanyakanMina  
 https://bit.ly/TanyakanMina  
 https://bit.ly/TanyakanMina
+
+
+
+nyoba konflik
+
+nyodfbaadf
+
