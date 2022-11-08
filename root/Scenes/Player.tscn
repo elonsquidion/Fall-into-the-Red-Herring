@@ -4,7 +4,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30.5, 30.625 )
+extents = Vector2( 64, 64 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -13,5 +13,5 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1.09375, 1.07812 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
