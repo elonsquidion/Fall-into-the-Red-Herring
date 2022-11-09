@@ -3,7 +3,10 @@ extends KinematicBody2D
 signal buff_activated(status)
 
 const highscore_file = "user://highscore.txt"
-export var hit_points = 5
+const heart_size = 64
+export var max_hp = 5
+
+var hit_points = max_hp
 var score = 0
 var highscore = 0
 var direction = Vector2.ZERO
@@ -13,7 +16,9 @@ func _ready():
 #	reset_highscore()
 	load_score()
 	var score_bar = get_parent().get_node("Highscore")
+	var hp_bar = get_parent().get_node("HP Bar")
 	score_bar.text = "Highscore: " + str(highscore)
+	hp_bar.rect_size.x = hit_points * heart_size
 
 func _process(_delta):
 	highscore = max(highscore, score)
@@ -84,14 +89,14 @@ func mechanics():
 		
 	if Input.is_action_just_pressed("down") and position.y < 560:
 		global_position.y += 160
-	elif Input.is_action_just_pressed("up"):
+	elif Input.is_action_just_pressed("up") and position.y > 80:
 		global_position.y -= 160
 
 
 func take_damage(body, damage):
 	var hp_bar = body.get_parent().get_node("HP Bar")
 	body.hit_points -= damage
-	hp_bar.value = body.hit_points
+	hp_bar.rect_size.x = body.hit_points * body.heart_size
 	if body.hit_points == 0:
 		save_score(body.highscore)
 		body.get_tree().reload_current_scene()
