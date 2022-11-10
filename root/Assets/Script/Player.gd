@@ -99,7 +99,7 @@ func take_damage(body, damage):
 	hp_bar.rect_size.x = body.hit_points * body.heart_size
 	if body.hit_points == 0:
 		save_score(body.highscore)
-		body.get_tree().reload_current_scene()
+		body.get_tree().change_scene("res://Scenes/Menu.tscn")
 
 func add_point(body, point):
 	var score_bar = body.get_parent().get_node("Score")
