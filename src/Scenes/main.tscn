@@ -7,15 +7,26 @@
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 279.875, 7.375 )
+extents = Vector2( 213.333, 8.84375 )
 
 [node name="main" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 80, 560 )
+position = Vector2( 672, 544 )
 
-[node name="HP Bar" type="TextureRect" parent="."]
+[node name="Vanisher" type="Area2D" parent="."]
+
+[node name="Area Vanisher" type="CollisionShape2D" parent="Vanisher"]
+position = Vector2( 640, 747.578 )
+scale = Vector2( 3, 0.5 )
+shape = SubResource( 2 )
+
+[node name="Spike Setter" parent="." instance=ExtResource( 3 )]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HP Bar" type="TextureRect" parent="UI"]
 margin_left = 992.0
 margin_top = 16.0
 margin_right = 1056.0
@@ -25,7 +36,7 @@ texture = ExtResource( 1 )
 expand = true
 stretch_mode = 2
 
-[node name="HP" type="RichTextLabel" parent="HP Bar"]
+[node name="HP" type="RichTextLabel" parent="UI/HP Bar"]
 margin_left = -64.0
 margin_top = 32.0
 margin_right = -16.0
@@ -33,7 +44,7 @@ margin_bottom = 48.0
 rect_scale = Vector2( 2, 2 )
 text = "HP:"
 
-[node name="Buff Status" type="Label" parent="."]
+[node name="Buff Status" type="Label" parent="UI"]
 margin_left = 960.0
 margin_top = 64.0
 margin_right = 1049.0
@@ -41,32 +52,23 @@ margin_bottom = 78.0
 text = "Status: -"
 script = ExtResource( 4 )
 
-[node name="Buff Time" type="Timer" parent="Buff Status"]
+[node name="Buff Time" type="Timer" parent="UI/Buff Status"]
 wait_time = 5.0
 one_shot = true
 
-[node name="Score" type="Label" parent="."]
+[node name="Score" type="Label" parent="UI"]
 margin_left = 1174.0
 margin_top = 21.0
 margin_right = 1225.0
 margin_bottom = 35.0
 text = "Score: 0"
 
-[node name="Highscore" type="Label" parent="."]
+[node name="Highscore" type="Label" parent="UI"]
 margin_left = 1174.0
 margin_top = 45.0
 margin_right = 1254.0
 margin_bottom = 59.0
 text = "Highscore: 0"
 
-[node name="Vanisher" type="Area2D" parent="."]
-
-[node name="Area Vanisher" type="CollisionShape2D" parent="Vanisher"]
-position = Vector2( 500, 730 )
-scale = Vector2( 3, 0.5 )
-shape = SubResource( 2 )
-
-[node name="Spike Setter" parent="." instance=ExtResource( 3 )]
-
-[connection signal="timeout" from="Buff Status/Buff Time" to="Buff Status" method="_on_Buff_Time_timeout"]
 [connection signal="area_entered" from="Vanisher" to="." method="_on_Vanisher_area_entered"]
+[connection signal="timeout" from="UI/Buff Status/Buff Time" to="UI/Buff Status" method="_on_Buff_Time_timeout"]

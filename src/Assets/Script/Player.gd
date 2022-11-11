@@ -15,8 +15,8 @@ var movement = Vector2.ZERO
 func _ready():
 #	reset_highscore()
 	load_score()
-	var score_bar = get_parent().get_node("Highscore")
-	var hp_bar = get_parent().get_node("HP Bar")
+	var score_bar = get_parent().get_node("UI/Score")
+	var hp_bar = get_parent().get_node("UI/HP Bar")
 	score_bar.text = "Highscore: " + str(highscore)
 	hp_bar.rect_size.x = hit_points * heart_size
 
@@ -82,19 +82,19 @@ func slow_movement():
 	pass
 
 func mechanics():
-	if Input.is_action_just_pressed("right") and position.x < 1200:
-		global_position.x += 160
-	elif Input.is_action_just_pressed("left") and position.x > 80:
-		global_position.x -= 160
+	if Input.is_action_just_pressed("right") and position.x < 1248:
+		global_position.x += 64
+	elif Input.is_action_just_pressed("left") and position.x > 32:
+		global_position.x -= 64
 		
-	if Input.is_action_just_pressed("down") and position.y < 560:
-		global_position.y += 160
-	elif Input.is_action_just_pressed("up") and position.y > 80:
-		global_position.y -= 160
+	if Input.is_action_just_pressed("down") and position.y < 608:
+		global_position.y += 64
+	elif Input.is_action_just_pressed("up") and position.y > 204:
+		global_position.y -= 64
 
 
 func take_damage(body, damage):
-	var hp_bar = body.get_parent().get_node("HP Bar")
+	var hp_bar = body.get_parent().get_node("UI/HP Bar")
 	body.hit_points -= damage
 	hp_bar.rect_size.x = body.hit_points * body.heart_size
 	if body.hit_points == 0:
@@ -102,8 +102,8 @@ func take_damage(body, damage):
 		body.get_tree().change_scene("res://Scenes/Menu.tscn")
 
 func add_point(body, point):
-	var score_bar = body.get_parent().get_node("Score")
-	var highscore_bar = body.get_parent().get_node("Highscore")
+	var score_bar = body.get_parent().get_node("UI/Score")
+	var highscore_bar = body.get_parent().get_node("UI/Highscore")
 	body.score += point
 	score_bar.text = "Score: " +  str(body.score)
 	if body.score <= body.highscore:
