@@ -14,8 +14,6 @@ func _ready():
 	name.text = "Welcome, " + str(Global.player_name) + "!"
 	f.close()
 	container.rect_pivot_offset = container.rect_size / 2
-	print(container.rect_size)
-	print(container.rect_pivot_offset)
 	
 	load_score()
 
@@ -42,3 +40,7 @@ func _on_Quit_pressed():
 
 func _on_Button_pressed():
 	pass # Replace with function body.
+
+func _on_Leaderboard_pressed():
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://addons/silent_wolf/Scores/Leaderboard.tscn")
