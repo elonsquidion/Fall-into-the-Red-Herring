@@ -6,6 +6,8 @@ const highscore_file = "user://highscore.txt"
 const heart_size = 64
 export var max_hp = 5
 
+onready var start = get_parent().get_node("UI/Start")
+onready var game_over = get_parent().get_node("UI/Game Over")
 var hit_points = max_hp
 var score = 0
 var highscore = 0
@@ -15,10 +17,17 @@ var movement = Vector2.ZERO
 func _ready():
 #	reset_highscore()
 	load_score()
-	var score_bar = get_parent().get_node("UI/Score")
+	var score_bar = get_parent().get_node("UI/Highscore")
 	var hp_bar = get_parent().get_node("UI/HP Bar")
+	start.visible = true
 	score_bar.text = "Highscore: " + str(highscore)
 	hp_bar.rect_size.x = hit_points * heart_size
+
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed and start.visible:
+			start.set_visible(false)
+			get_tree().paused = false
 
 func _process(_delta):
 	highscore = max(highscore, score)
@@ -92,14 +101,14 @@ func mechanics():
 	elif Input.is_action_just_pressed("up") and position.y > 204:
 		global_position.y -= 64
 
-
 func take_damage(body, damage):
 	var hp_bar = body.get_parent().get_node("UI/HP Bar")
 	body.hit_points -= damage
 	hp_bar.rect_size.x = body.hit_points * body.heart_size
 	if body.hit_points == 0:
 		save_score(body.highscore)
-		body.get_tree().change_scene("res://Scenes/Menu.tscn")
+		body.game_over.visible = true
+		body.get_tree().paused = true
 
 func add_point(body, point):
 	var score_bar = body.get_parent().get_node("UI/Score")
