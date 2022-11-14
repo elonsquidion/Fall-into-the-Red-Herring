@@ -22,28 +22,34 @@ custom_constants/separation = 13
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 13.0
-margin_right = 80.0
-margin_bottom = 27.0
+margin_right = 91.0
+margin_bottom = 14.0
 text = "Highscore: 0"
 
 [node name="Start" type="Button" parent="VBoxContainer"]
-margin_top = 40.0
-margin_right = 80.0
-margin_bottom = 60.0
+margin_top = 27.0
+margin_right = 91.0
+margin_bottom = 47.0
 action_mode = 0
 text = "Start"
 
+[node name="Leaderboard" type="Button" parent="VBoxContainer"]
+margin_top = 60.0
+margin_right = 91.0
+margin_bottom = 80.0
+action_mode = 0
+text = "Leaderboard"
+
 [node name="Options" type="Button" parent="VBoxContainer"]
-margin_top = 73.0
-margin_right = 80.0
-margin_bottom = 93.0
+margin_top = 93.0
+margin_right = 91.0
+margin_bottom = 113.0
 text = "Options"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
-margin_top = 106.0
-margin_right = 80.0
-margin_bottom = 126.0
+margin_top = 126.0
+margin_right = 91.0
+margin_bottom = 146.0
 text = "Quit"
 
 [node name="Button" type="Button" parent="."]
@@ -62,6 +68,7 @@ rect_scale = Vector2( 2.5, 2.5 )
 text = "dummyyyyyyyyyyyyyyyyyyyy"
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Leaderboard" to="." method="_on_Leaderboard_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

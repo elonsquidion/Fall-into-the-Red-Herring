@@ -13,12 +13,14 @@ var score = 0
 var highscore = 0
 var direction = Vector2.ZERO
 var movement = Vector2.ZERO
+var new_high = false
 
 func _ready():
 #	reset_highscore()
 	load_score()
 	var score_bar = get_parent().get_node("UI/Highscore")
 	var hp_bar = get_parent().get_node("UI/HP Bar")
+	new_high = false
 	start.visible = true
 	score_bar.text = "Highscore: " + str(highscore)
 	hp_bar.rect_size.x = hit_points * heart_size
@@ -107,6 +109,8 @@ func take_damage(body, damage):
 	hp_bar.rect_size.x = body.hit_points * body.heart_size
 	if body.hit_points == 0:
 		save_score(body.highscore)
+		if body.new_high:
+			SilentWolf.Scores.persist_score(Global.player_name, body.highscore)
 		body.game_over.visible = true
 		body.get_tree().paused = true
 
@@ -118,4 +122,5 @@ func add_point(body, point):
 	if body.score <= body.highscore:
 		highscore_bar.text = "Highscore: " + str(body.highscore)
 	else:
+		body.new_high = true
 		highscore_bar.text = "Highscore: " + str(body.highscore + 1)
