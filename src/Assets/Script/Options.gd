@@ -12,6 +12,7 @@ func _on_Change_Username_pressed():
 
 func _on_Log_Out_pressed():
 	SilentWolf.Auth.logout_player()
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/auth_main.tscn")
 
 func _on_Menu_pressed():

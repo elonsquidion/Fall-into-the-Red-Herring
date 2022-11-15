@@ -272,9 +272,6 @@ func _on_GetScoresByPlayer_request_completed(result, response_code, headers, bod
 				#print("latest_scores: " + str(leaderboards))
 				emit_signal("sw_player_scores_received", player_scores)
 
-func player_scores():
-	pass
-
 func _on_GetHighScores_request_completed(result, response_code, headers, body):
 	SWLogger.info("GetHighScores request completed")
 	var status_check = CommonErrors.check_status_code(response_code)
