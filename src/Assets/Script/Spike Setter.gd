@@ -12,4 +12,3 @@ func _on_Timer_timeout():
 	var index = randi() % spawn_positions.size()
 	spike_instance.global_position = spawn_positions[index].global_position
 	add_child(spike_instance)
-	
