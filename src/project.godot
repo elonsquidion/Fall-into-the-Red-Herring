@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Fall Into the Red Herring"
-run/main_scene="res://Scenes/Menu.tscn"
+run/main_scene="res://addons/silent_wolf/Auth/Login.tscn"
 config/icon="res://icon.png"
 <<<<<<<Updatedupstreamconfig/name="Fall into the Red Herring"
 
@@ -70,7 +70,3 @@ activate_buff={
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"

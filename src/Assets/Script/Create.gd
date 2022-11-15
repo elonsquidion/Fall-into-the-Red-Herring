@@ -10,3 +10,11 @@ func _on_Button_pressed():
 	f.close()
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/Menu.tscn")
+
+func _on_Sign_Up_pressed():
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://addons/silent_wolf/Auth/Register.tscn")
+
+func _on_Log_In_pressed():
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://addons/silent_wolf/Auth/Login.tscn")

@@ -93,7 +93,7 @@ func configure_auth(json_auth_config):
 	auth_config = json_auth_config
 
 func configure_auth_redirect_to_scene(scene):
-	auth_config.open_scene_on_close = scene
+	auth_config.redirect_to_scene = scene
 	
 func configure_auth_session_duration(duration):
 	auth_config.session_duration = duration

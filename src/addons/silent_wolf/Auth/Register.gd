@@ -11,10 +11,9 @@ func _ready():
 
 func _on_RegisterButton_pressed():
 	var player_name = $"FormContainer/MainFormContainer/FormInputFields/PlayerName".text
-	var email = $"FormContainer/MainFormContainer/FormInputFields/Email".text
 	var password = $"FormContainer/MainFormContainer/FormInputFields/Password".text
 	var confirm_password = $"FormContainer/MainFormContainer/FormInputFields/ConfirmPassword".text
-	SilentWolf.Auth.register_player(player_name, email, password, confirm_password)
+	SilentWolf.Auth.register_player_user_password(player_name, password, confirm_password)
 	show_processing_label()
 
 
@@ -22,6 +21,7 @@ func _on_RegisterUPButton_pressed():
 	var player_name = $"FormContainer/MainFormContainer/FormInputFields/PlayerName".text
 	var password = $"FormContainer/MainFormContainer/FormInputFields/Password".text
 	var confirm_password = $"FormContainer/MainFormContainer/FormInputFields/ConfirmPassword".text
+	Global.player_name = player_name
 	SilentWolf.Auth.register_player_user_password(player_name, password, confirm_password)
 	show_processing_label()
 
@@ -30,12 +30,11 @@ func _on_registration_succeeded():
 	#get_tree().change_scene("res://addons/silent_wolf/Auth/Login.tscn")
 	# redirect to configured scene (user is logged in after registration)
 	var scene_name = SilentWolf.auth_config.redirect_to_scene
+	var player_data = {
+		"Highscore": 0
+	}
 	# if doing email verification, open scene to confirm email address
-	if ("email_confirmation_scene" in SilentWolf.auth_config) and (SilentWolf.auth_config.email_confirmation_scene) != "":
-		SWLogger.info("registration succeeded, waiting for email verification...")
-		scene_name = SilentWolf.auth_config.email_confirmation_scene
-	else:
-		SWLogger.info("registration succeeded, logged in player: " + str(SilentWolf.Auth.logged_in_player))
+	SWLogger.info("registration succeeded, logged in player: " + str(SilentWolf.Auth.logged_in_player))
 	get_tree().change_scene(scene_name)
 
 

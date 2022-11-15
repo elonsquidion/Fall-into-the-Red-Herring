@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Script/Spike.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 80 )
@@ -29,3 +30,8 @@ shape = SubResource( 2 )
 [node name="Right" type="CollisionShape2D" parent="Point Area"]
 position = Vector2( 674, -21.5 )
 shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -4.41074e-06, 9.05991e-06 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 2 )
