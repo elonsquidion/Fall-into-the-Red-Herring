@@ -1,9 +1,9 @@
 extends Node2D
 
 func _ready():
-	var player_name = $"UI/Player Name"
-	print(Global.player_name)
-	player_name.text = str(Global.player_name)
+	var player_label = $"UI/Player Name"
+	var player_name = SilentWolf.Players.player_name
+	player_label.text = str(player_name)
 	get_tree().paused = true
 		
 func _physics_process(_delta):

@@ -21,23 +21,17 @@ rect_pivot_offset = Vector2( 64, 43 )
 custom_constants/separation = 13
 alignment = 1
 
-[node name="Reset Highscore" type="Button" parent="VBoxContainer"]
+[node name="Log Out" type="Button" parent="VBoxContainer"]
+margin_top = 16.0
 margin_right = 128.0
-margin_bottom = 20.0
+margin_bottom = 36.0
 text = "Reset Highscore"
 
-[node name="Change Username" type="Button" parent="VBoxContainer"]
-margin_top = 33.0
-margin_right = 128.0
-margin_bottom = 53.0
-text = "Change Username"
-
 [node name="Menu" type="Button" parent="VBoxContainer"]
-margin_top = 66.0
+margin_top = 49.0
 margin_right = 128.0
-margin_bottom = 86.0
+margin_bottom = 69.0
 text = "Back to Menu"
 
-[connection signal="pressed" from="VBoxContainer/Reset Highscore" to="." method="_on_Reset_Highscore_pressed"]
-[connection signal="pressed" from="VBoxContainer/Change Username" to="." method="_on_Change_Username_pressed"]
+[connection signal="pressed" from="VBoxContainer/Log Out" to="." method="_on_Log_Out_pressed"]
 [connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
