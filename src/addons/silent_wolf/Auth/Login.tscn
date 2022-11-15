@@ -133,7 +133,6 @@ margin_right = 619.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 330, 75 )
 custom_fonts/font = SubResource( 7 )
-text = "elons13"
 max_length = 30
 
 [node name="PasswordContainer" type="HBoxContainer" parent="FormContainer"]
@@ -155,7 +154,6 @@ margin_right = 617.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 330, 75 )
 custom_fonts/font = SubResource( 8 )
-text = "D3lon2004"
 max_length = 30
 secret = true
 
