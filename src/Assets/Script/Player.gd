@@ -6,6 +6,7 @@ const highscore_file = "user://highscore.txt"
 const heart_size = 64
 export var max_hp = 5
 
+var shield_hp = 0
 var hit_points = max_hp
 var score = 0
 var highscore = 0
@@ -65,6 +66,7 @@ func debuff():
 
 func shield():
 	pass
+
 
 func immune():
 	pass
