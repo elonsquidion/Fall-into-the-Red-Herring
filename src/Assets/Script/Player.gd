@@ -85,7 +85,6 @@ func take_damage(body, damage):
 	hp_bar.rect_size.x = body.hit_points * body.heart_size
 	if body.hit_points == 0:
 		if body.new_high:
-			print("jancokkkkkk")
 			SilentWolf.Scores.persist_score(SilentWolf.Players.player_name, Global.highscore)
 		body.game_over.visible = true
 		body.get_tree().paused = true

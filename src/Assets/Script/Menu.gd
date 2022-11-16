@@ -3,6 +3,7 @@ extends Control
 const highscore_file = "user://highscore.txt"
 
 func _ready():
+	$Name.text = "Welcome, " + str(SilentWolf.Players.player_name) + "!"
 	var player_scores = yield(SilentWolf.Scores.get_scores_by_player(SilentWolf.Players.player_name), "sw_player_scores_received")
 	print("Got player scores: " + str(player_scores))
 	print("Got: " + str(player_scores.size()) + " scores for player: " + str(SilentWolf.Players.player_name))
@@ -11,7 +12,6 @@ func _ready():
 	if player_scores.size() > 0:
 		Global.highscore = player_scores[0]["score"]
 	label.text = "Highscore: " + str(Global.highscore)
-	$Name.text = "Welcome, " + str(SilentWolf.Players.player_name) + "!"
 	get_tree().paused = false
 
 func _on_Start_pressed():

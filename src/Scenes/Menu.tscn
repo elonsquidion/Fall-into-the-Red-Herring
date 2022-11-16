@@ -1,13 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Script/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Button/Main Menu_Blank.PNG" type="Texture" id=2]
 [ext_resource path="res://Assets/Background/Bg1.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Font/Pixeled.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/Font/I-pixel-u.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Button/Up.PNG" type="Texture" id=6]
+[ext_resource path="res://Assets/Button/Down.PNG" type="Texture" id=7]
+[ext_resource path="res://Assets/Button/Big.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
@@ -24,6 +30,7 @@ rect_scale = Vector2( 0.8, 0.563 )
 texture = ExtResource( 3 )
 
 [node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
 margin_left = -144.0
 margin_top = 24.0
 margin_right = 1456.0
@@ -56,36 +63,36 @@ rect_scale = Vector2( 3, 3 )
 custom_fonts/font = SubResource( 1 )
 text = "Highscore: -"
 
-[node name="Start" type="Button" parent="."]
-margin_left = 288.0
-margin_top = 184.0
-margin_right = 1016.0
-margin_bottom = 288.0
-action_mode = 0
-flat = true
+[node name="Start" type="TextureButton" parent="."]
+margin_left = 352.0
+margin_top = 112.0
+margin_right = 637.0
+margin_bottom = 295.0
+rect_scale = Vector2( 2, 2 )
+texture_normal = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="Start"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -40.0
-margin_top = -23.0
-margin_right = 40.0
-margin_bottom = 23.0
-rect_scale = Vector2( 4.5, 4.5 )
-rect_pivot_offset = Vector2( 40, 26 )
+margin_left = -34.5
+margin_top = -39.5
+margin_right = 45.5
+margin_bottom = 6.5
+rect_scale = Vector2( 1.5, 1.5 )
+rect_pivot_offset = Vector2( 40, 36 )
 custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Start"
-align = 1
 
-[node name="Log Out" type="Button" parent="."]
-margin_left = 480.0
+[node name="Log Out" type="TextureButton" parent="."]
+margin_left = 496.0
 margin_top = 376.0
-margin_right = 864.0
-margin_bottom = 416.0
-flat = true
+margin_right = 912.0
+margin_bottom = 584.0
+rect_scale = Vector2( 0.7, 0.7 )
+texture_normal = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="Log Out"]
 anchor_left = 0.5
@@ -102,24 +109,25 @@ custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Log Out"
 
-[node name="Quit" type="Button" parent="."]
+[node name="Quit" type="TextureButton" parent="."]
 margin_left = 480.0
-margin_top = 488.0
-margin_right = 864.0
-margin_bottom = 528.0
-flat = true
+margin_top = 528.0
+margin_right = 927.0
+margin_bottom = 705.0
+rect_scale = Vector2( 0.7, 0.7 )
+texture_normal = ExtResource( 7 )
 
-[node name="Label2" type="Label" parent="Quit"]
+[node name="Label" type="Label" parent="Quit"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -28.5
-margin_top = -23.0
-margin_right = 28.5
-margin_bottom = 23.0
+margin_left = -17.7857
+margin_top = -31.3572
+margin_right = 39.2143
+margin_bottom = 14.6428
 rect_scale = Vector2( 1.5, 1.5 )
-rect_pivot_offset = Vector2( 28, 23 )
+rect_pivot_offset = Vector2( 28, 46 )
 custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Quit"
