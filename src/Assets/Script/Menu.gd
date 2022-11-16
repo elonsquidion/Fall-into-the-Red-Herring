@@ -18,10 +18,6 @@ func _on_Start_pressed():
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/main.tscn")
 
-func _on_Options_pressed():
-	# warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/Options.tscn")
-
 func _on_Quit_pressed():
 	get_tree().quit()
 
@@ -31,3 +27,8 @@ func _on_Button_pressed():
 func _on_Leaderboard_pressed():
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://addons/silent_wolf/Scores/Leaderboard.tscn")
+
+func _on_Log_Out_pressed():
+	SilentWolf.Auth.logout_player()
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://Scenes/auth_main.tscn")

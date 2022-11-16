@@ -36,6 +36,3 @@ func show_processing_label():
 	
 func hide_processing_label():
 	$"FormContainer/ProcessingLabel".hide()
-
-func _on_LinkButton_pressed():
-	get_tree().change_scene(SilentWolf.auth_config.reset_password_scene)
