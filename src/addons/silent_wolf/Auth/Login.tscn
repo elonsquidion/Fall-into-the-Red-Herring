@@ -150,6 +150,7 @@ rect_min_size = Vector2( 330, 75 )
 custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
 custom_fonts/font = SubResource( 7 )
 custom_styles/normal = SubResource( 13 )
+text = "elons13"
 max_length = 20
 caret_blink = true
 
@@ -174,6 +175,7 @@ rect_min_size = Vector2( 330, 75 )
 custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
 custom_fonts/font = SubResource( 8 )
 custom_styles/normal = SubResource( 14 )
+text = "D3lon2004"
 max_length = 30
 secret = true
 
@@ -204,7 +206,7 @@ autowrap = true
 [node name="LoginButton" parent="FormContainer" instance=ExtResource( 2 )]
 margin_top = 735.0
 margin_right = 680.0
-margin_bottom = 861.0
+margin_bottom = 853.0
 custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
 text = "Submit"
 

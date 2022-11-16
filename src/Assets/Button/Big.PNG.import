@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Big.PNG-c295ab2b5e3ee28371001e2cb8a5258e.stex"
+path="res://.import/Big.png-3c8b5532a9ca6f7549a6d0406d476b6a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Button/Big.PNG"
-dest_files=[ "res://.import/Big.PNG-c295ab2b5e3ee28371001e2cb8a5258e.stex" ]
+source_file="res://Assets/Button/Big.png"
+dest_files=[ "res://.import/Big.png-3c8b5532a9ca6f7549a6d0406d476b6a.stex" ]
 
 [params]
 
