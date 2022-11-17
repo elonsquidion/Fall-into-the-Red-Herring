@@ -67,7 +67,6 @@ func debuff():
 func shield():
 	pass
 
-
 func immune():
 	pass
 

@@ -10,11 +10,11 @@ func passed(is_passed):
 func _ready():
 	var player_instance = player.instance()
 # warning-ignore:return_value_discarded
-	connect("body_entered", player_instance, "take_damage", [1])
+	connect("body_entered", player_instance, "take_damage", [2])
 	point_area.connect("body_entered", player_instance, "add_point", [1])
 	timer.connect("timeout", self, "spike_down")
 	timer.start(0.2)
 
 func spike_down():
-	position.y += 64
+	position.y += 20
 
