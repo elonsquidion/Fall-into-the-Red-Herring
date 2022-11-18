@@ -1,20 +1,14 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/silent_wolf/Auth/Login.gd" type="Script" id=1]
 [ext_resource path="res://addons/silent_wolf/common/SWButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Button/Input.PNG" type="Texture" id=3]
-[ext_resource path="res://Assets/Background/Bg1.png" type="Texture" id=4]
+[ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://addons/silent_wolf/assets/gfx/checkbox_unchecked.png" type="Texture" id=5]
 [ext_resource path="res://addons/silent_wolf/assets/gfx/checkbox_checked.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Leaderboard/Blank.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Font/I-pixel-u.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://Assets/Font/Pixeled.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://Assets/Audio/menu select.wav" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFont" id=4]
 size = 64
-font_data = ExtResource( 8 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 23.0
@@ -49,43 +43,33 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="DynamicFontData" id=13]
+font_path = "res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf"
+
 [sub_resource type="DynamicFont" id=5]
 size = 64
-font_data = ExtResource( 9 )
-
-[sub_resource type="StyleBoxTexture" id=15]
-content_margin_top = 5.0
-content_margin_bottom = 30.0
-texture = ExtResource( 7 )
-region_rect = Rect2( 0, 0, 1207, 223 )
+font_data = SubResource( 13 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 31
-font_data = ExtResource( 10 )
+size = 48
+font_data = SubResource( 13 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 32
-font_data = ExtResource( 10 )
-
-[sub_resource type="StyleBoxTexture" id=13]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 416, 112 )
-margin_left = 16.0
-margin_right = 16.0
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 32
-font_data = ExtResource( 10 )
+font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxTexture" id=14]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 416, 112 )
-margin_left = 15.0
-margin_right = 15.0
+[sub_resource type="DynamicFont" id=9]
+size = 32
+outline_color = Color( 0.211765, 0.25098, 0.937255, 1 )
+font_data = SubResource( 13 )
 
 [sub_resource type="DynamicFont" id=11]
 size = 32
-font_data = ExtResource( 10 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxFlat" id=10]
 content_margin_left = 5.0
@@ -93,13 +77,11 @@ bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [sub_resource type="DynamicFont" id=12]
 size = 32
-font_data = ExtResource( 8 )
+font_data = SubResource( 13 )
 
 [node name="Login" type="TextureRect"]
-margin_right = 1600.0
-margin_bottom = 1280.0
-rect_scale = Vector2( 0.8, 0.563 )
-texture = ExtResource( 4 )
+margin_right = 40.0
+margin_bottom = 40.0
 script = ExtResource( 1 )
 
 [node name="BackButton" parent="." instance=ExtResource( 2 )]
@@ -115,78 +97,80 @@ custom_styles/normal = SubResource( 3 )
 text = "← Back"
 
 [node name="FormContainer" type="VBoxContainer" parent="."]
-margin_left = 480.0
+margin_left = 448.0
 margin_top = 120.0
-margin_right = 1160.0
-margin_bottom = 1055.0
+margin_right = 1096.0
+margin_bottom = 947.0
+rect_scale = Vector2( 0.6, 0.6 )
 custom_constants/separation = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="FormContainer"]
-margin_right = 680.0
-margin_bottom = 215.0
-custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
+margin_right = 648.0
+margin_bottom = 72.0
 custom_fonts/font = SubResource( 5 )
-custom_styles/normal = SubResource( 15 )
 text = "Log in"
 align = 1
 
 [node name="UsernameContainer" type="HBoxContainer" parent="FormContainer"]
-margin_top = 295.0
-margin_right = 680.0
-margin_bottom = 370.0
+margin_top = 152.0
+margin_right = 648.0
+margin_bottom = 227.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="FormContainer/UsernameContainer"]
-margin_top = 19.0
-margin_right = 182.0
-margin_bottom = 55.0
+margin_top = 10.0
+margin_right = 269.0
+margin_bottom = 65.0
 custom_fonts/font = SubResource( 6 )
-text = "Username: "
+text = "Username:"
 
 [node name="Username" type="LineEdit" parent="FormContainer/UsernameContainer"]
-margin_left = 202.0
-margin_right = 532.0
+margin_left = 289.0
+margin_right = 619.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 330, 75 )
-custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
 custom_fonts/font = SubResource( 7 )
-custom_styles/normal = SubResource( 13 )
-text = "elons13"
-max_length = 20
-caret_blink = true
+max_length = 30
 
 [node name="PasswordContainer" type="HBoxContainer" parent="FormContainer"]
-margin_top = 450.0
-margin_right = 680.0
-margin_bottom = 525.0
+margin_top = 307.0
+margin_right = 648.0
+margin_bottom = 382.0
 custom_constants/separation = 40
 
 [node name="Label" type="Label" parent="FormContainer/PasswordContainer"]
-margin_top = 19.0
-margin_right = 161.0
-margin_bottom = 55.0
+margin_top = 10.0
+margin_right = 247.0
+margin_bottom = 65.0
 custom_fonts/font = SubResource( 6 )
 text = "Password:"
 
 [node name="Password" type="LineEdit" parent="FormContainer/PasswordContainer"]
-margin_left = 201.0
-margin_right = 531.0
+margin_left = 287.0
+margin_right = 617.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 330, 75 )
-custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
 custom_fonts/font = SubResource( 8 )
-custom_styles/normal = SubResource( 14 )
-text = "D3lon2004"
 max_length = 30
 secret = true
 
+[node name="LinkButton" type="LinkButton" parent="FormContainer"]
+margin_top = 462.0
+margin_right = 648.0
+margin_bottom = 499.0
+custom_colors/font_color = Color( 0.321569, 0.360784, 0.92549, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "Forgot Password?"
+
 [node name="RememberMeCheckBox" type="CheckBox" parent="FormContainer"]
-margin_top = 605.0
-margin_right = 680.0
-margin_bottom = 655.0
+margin_top = 579.0
+margin_right = 648.0
+margin_bottom = 629.0
 rect_min_size = Vector2( 50, 50 )
 focus_mode = 0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_constants/hseparation = 15
 custom_fonts/font = SubResource( 11 )
 custom_icons/checked = ExtResource( 6 )
@@ -205,25 +189,20 @@ custom_fonts/font = SubResource( 12 )
 autowrap = true
 
 [node name="LoginButton" parent="FormContainer" instance=ExtResource( 2 )]
-margin_top = 735.0
-margin_right = 680.0
-margin_bottom = 853.0
-custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
+margin_top = 709.0
+margin_right = 648.0
+margin_bottom = 827.0
 text = "Submit"
 
 [node name="ProcessingLabel" type="Label" parent="FormContainer"]
 visible = false
-margin_top = 941.0
-margin_right = 680.0
-margin_bottom = 1121.0
+margin_top = 740.0
+margin_right = 648.0
+margin_bottom = 812.0
 custom_fonts/font = SubResource( 5 )
 text = "Processing..."
 align = 1
 
-[node name="Menu Select" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-
-[connection signal="mouse_entered" from="BackButton" to="." method="_on_LoginButton_mouse_entered"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
-[connection signal="mouse_entered" from="FormContainer/LoginButton" to="." method="_on_LoginButton_mouse_entered"]
+[connection signal="pressed" from="FormContainer/LinkButton" to="." method="_on_LinkButton_pressed"]
 [connection signal="pressed" from="FormContainer/LoginButton" to="." method="_on_LoginButton_pressed"]

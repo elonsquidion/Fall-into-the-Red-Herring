@@ -15,13 +15,6 @@ run/main_scene="res://Scenes/main.tscn"
 config/icon="res://icon.png"
 <<<<<<<Updatedupstreamconfig/name="Fall into the Red Herring"
 
-[autoload]
-
-SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
-Global="*res://Assets/Script/global.gd"
-bg_music="*res://Assets/Audio/Bg.tscn"
-
-
 [display]
 
 window/size/width=1280
