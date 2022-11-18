@@ -15,14 +15,9 @@ extents = Vector2( 213.333, 8.84375 )
 
 [node name="main" type="Node2D"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 720.0 ],
-"_edit_vertical_guides_": [ 1280.0 ]
-}
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-pause_mode = 2
-position = Vector2( 672, 544 )
+position = Vector2( 638, 572 )
 
 [node name="Vanisher" type="Area2D" parent="."]
 
@@ -34,10 +29,10 @@ shape = SubResource( 2 )
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HP Bar" type="TextureRect" parent="UI"]
-margin_left = 984.0
-margin_top = 40.0
-margin_right = 1048.0
-margin_bottom = 104.0
+margin_left = 992.0
+margin_top = 16.0
+margin_right = 1056.0
+margin_bottom = 80.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 expand = true
@@ -45,17 +40,17 @@ stretch_mode = 2
 
 [node name="HP" type="RichTextLabel" parent="UI/HP Bar"]
 margin_left = -64.0
-margin_top = 16.0
+margin_top = 32.0
 margin_right = -16.0
-margin_bottom = 32.0
+margin_bottom = 48.0
 rect_scale = Vector2( 2, 2 )
 text = "HP:"
 
 [node name="Buff Status" type="Label" parent="UI"]
-margin_left = 1160.0
-margin_top = 88.0
-margin_right = 1249.0
-margin_bottom = 102.0
+margin_left = 960.0
+margin_top = 64.0
+margin_right = 1049.0
+margin_bottom = 78.0
 text = "Status: -"
 script = ExtResource( 4 )
 
@@ -64,17 +59,17 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Score" type="Label" parent="UI"]
-margin_left = 1160.0
-margin_top = 32.0
-margin_right = 1211.0
-margin_bottom = 46.0
+margin_left = 1174.0
+margin_top = 21.0
+margin_right = 1225.0
+margin_bottom = 35.0
 text = "Score: 0"
 
 [node name="Highscore" type="Label" parent="UI"]
-margin_left = 1160.0
-margin_top = 48.0
-margin_right = 1240.0
-margin_bottom = 62.0
+margin_left = 1174.0
+margin_top = 45.0
+margin_right = 1254.0
+margin_bottom = 59.0
 text = "Highscore: 0"
 
 [node name="Boss" type="Node2D" parent="."]
@@ -84,7 +79,6 @@ position = Vector2( 644, 75 )
 scale = Vector2( 1.42188, 1.23438 )
 texture = ExtResource( 1 )
 
-<<<<<<< HEAD
 [node name="Toxic_att" parent="Boss" instance=ExtResource( 6 )]
 position = Vector2( 3, 110 )
 
@@ -99,70 +93,6 @@ position = Vector2( 1, 110 )
 
 [node name="Pop Up Debuff" parent="Boss" instance=ExtResource( 9 )]
 position = Vector2( 1, 113 )
-=======
-[node name="Toxic_att" parent="." instance=ExtResource( 6 )]
-[node name="Player Name" type="Label" parent="UI"]
-margin_left = 984.0
-margin_top = 8.0
-margin_right = 1064.0
-margin_bottom = 22.0
-rect_scale = Vector2( 2, 2 )
-
-[node name="Start" type="Label" parent="UI"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -40.0
-margin_top = -7.0
-margin_right = 40.0
-margin_bottom = 7.0
-rect_scale = Vector2( 4, 4 )
-rect_pivot_offset = Vector2( 40, 7 )
-text = "Start"
-align = 1
-
-[node name="Game Over" type="Control" parent="UI"]
-pause_mode = 2
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Game Over"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -50.5
-margin_top = -47.5
-margin_right = 50.5
-margin_bottom = 47.5
-rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 50, 47 )
-custom_constants/separation = 12
-
-[node name="Label" type="Label" parent="UI/Game Over/VBoxContainer"]
-margin_right = 101.0
-margin_bottom = 31.0
-text = "Game Over!
-"
-align = 1
-
-[node name="Retry" type="Button" parent="UI/Game Over/VBoxContainer"]
-margin_top = 43.0
-margin_right = 101.0
-margin_bottom = 63.0
-text = "Retry"
-
-[node name="Menu" type="Button" parent="UI/Game Over/VBoxContainer"]
-margin_top = 75.0
-margin_right = 101.0
-margin_bottom = 95.0
-text = "Back To Menu"
->>>>>>> c2f6544e6b9db018552ed6e4ffaf0c59f72092cd
 
 [connection signal="area_entered" from="Vanisher" to="." method="_on_Vanisher_area_entered"]
 [connection signal="timeout" from="UI/Buff Status/Buff Time" to="UI/Buff Status" method="_on_Buff_Time_timeout"]
-[connection signal="pressed" from="UI/Game Over/VBoxContainer/Retry" to="." method="_on_Retry_pressed"]
-[connection signal="pressed" from="UI/Game Over/VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
