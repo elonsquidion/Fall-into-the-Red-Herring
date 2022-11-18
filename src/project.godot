@@ -11,9 +11,15 @@ config_version=4
 [application]
 
 config/name="Fall Into the Red Herring"
-run/main_scene="res://Scenes/main.tscn"
+run/main_scene="res://addons/silent_wolf/Auth/Login.tscn"
 config/icon="res://icon.png"
 <<<<<<<Updatedupstreamconfig/name="Fall into the Red Herring"
+
+[autoload]
+
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+Global="*res://Assets/Script/global.gd"
+bg_music="*res://Assets/Audio/Bg.tscn"
 
 [display]
 
@@ -21,6 +27,10 @@ window/size/width=1280
 window/size/height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/silent_wolf/plugin.cfg" )
 
 [gui]
 
