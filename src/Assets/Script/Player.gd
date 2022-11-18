@@ -99,10 +99,8 @@ func take_damage(body, damage):
 	body.hit_points -= damage
 	hp_bar.rect_size.x = body.hit_points * body.heart_size
 	if body.hit_points == 0:
-		if body.new_high:
-			SilentWolf.Scores.persist_score(SilentWolf.Players.player_name, Global.highscore)
-		body.game_over.visible = true
-		body.get_tree().paused = true
+		save_score(body.highscore)
+		body.get_tree().change_scene("res://Scenes/Menu.tscn")
 
 func add_point(body, point):
 	var score_bar = body.get_parent().get_node("UI/Score")

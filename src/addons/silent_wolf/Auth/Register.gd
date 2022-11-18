@@ -78,7 +78,3 @@ func _on_PasswordToolButton_mouse_entered():
 
 func _on_PasswordToolButton_mouse_exited():
 	$"FormContainer/InfoBox".hide()
-
-
-func _on_Button_mouse_entered():
-	$"Menu Select".play()

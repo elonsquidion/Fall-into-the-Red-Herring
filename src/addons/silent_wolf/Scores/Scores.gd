@@ -40,7 +40,7 @@ var scores_below  = []
 #var request_timer = null
 
 # latest number of scores to be fetched from the backend
-var latest_max = 1
+var latest_max = 10
 
 var ScorePosition = null
 var ScoresAround = null
@@ -115,7 +115,7 @@ func get_scores_around(score, scores_to_fetch=3, ldboard_name="main"):
 	send_get_request(ScoresAround, request_url)
 	return self
 
-func get_high_scores(maximum=3, ldboard_name="main", period_offset=0):
+func get_high_scores(maximum=10, ldboard_name="main", period_offset=0):
 	HighScores = HTTPRequest.new()
 	wrHighScores = weakref(HighScores)
 	if OS.get_name() != "HTML5":

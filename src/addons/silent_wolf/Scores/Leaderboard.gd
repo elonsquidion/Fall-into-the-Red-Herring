@@ -7,7 +7,7 @@ const SWLogger = preload("res://addons/silent_wolf/utils/SWLogger.gd")
 var list_index = 0
 # Replace the leaderboard name if you're not using the default leaderboard
 var ld_name = "main"
-var max_scores = 1
+var max_scores = 10
 
 func _ready():
 	print("SilentWolf.Scores.leaderboards: " + str(SilentWolf.Scores.leaderboards))
@@ -20,7 +20,6 @@ func _ready():
 	print("scores : " + str(scores))
 	print("local_scores :" + str(local_scores))
 	print("length scores : " + str(len(scores)))
-	print("max : " + str(max_scores))
 	add_loading_scores_message()
 	yield(SilentWolf.Scores.get_high_scores(), "sw_scores_received")
 	hide_message()
@@ -42,7 +41,6 @@ func render_board(scores, local_scores):
 	else:
 		for score in all_scores:
 			add_item(score.player_name, str(int(score.score)))
-	print("all scores : " + str(all_scores))
 
 
 
@@ -53,7 +51,7 @@ func is_default_leaderboard(ld_config):
 
 
 
-func merge_scores_with_local_scores(scores, local_scores, max_scores):
+func merge_scores_with_local_scores(scores, local_scores, max_scores=10):
 	if local_scores:
 		for score in local_scores:
 			var in_array = score_in_score_array(scores, score)
@@ -63,7 +61,6 @@ func merge_scores_with_local_scores(scores, local_scores, max_scores):
 	var return_scores = scores
 	if scores.size() > max_scores:
 		return_scores = scores.resize(max_scores)
-	print("merged scores: " + str(return_scores))
 	return return_scores
 
 
@@ -89,7 +86,7 @@ func score_in_score_array(scores, new_score):
 func add_item(player_name, score):
 	var item = ScoreItem.instance()
 	list_index += 1
-	item.get_node("PlayerName").text = str(list_index) + str("    ") + player_name
+	item.get_node("PlayerName").text = str(list_index) + str(". ") + player_name
 	item.get_node("Score").text = score
 	item.margin_top = list_index * 100
 	$"Board/HighScores/ScoreItemContainer".add_child(item)
