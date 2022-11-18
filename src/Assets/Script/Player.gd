@@ -30,6 +30,7 @@ func _input(event):
 			get_tree().paused = false
 
 func _process(_delta):
+	print(hit_points)
 	Global.highscore = max(Global.highscore, score)
 
 func _physics_process(_delta):
@@ -84,7 +85,7 @@ func take_damage(body, damage):
 	var hp_bar = body.get_parent().get_node("UI/HP Bar")
 	body.hit_points -= damage
 	hp_bar.rect_size.x = body.hit_points * body.heart_size
-	if body.hit_points == 0:
+	if body.hit_points <= 0:
 		if body.new_high:
 			SilentWolf.Scores.persist_score(SilentWolf.Players.player_name, Global.highscore)
 		body.game_over.visible = true

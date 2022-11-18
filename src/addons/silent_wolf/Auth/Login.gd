@@ -33,7 +33,7 @@ func _on_BackButton_pressed():
 func show_processing_label():
 	$"FormContainer/ProcessingLabel".show()
 	$"FormContainer/ProcessingLabel".show()
-	
+
 func hide_processing_label():
 	$"FormContainer/ProcessingLabel".hide()
 
