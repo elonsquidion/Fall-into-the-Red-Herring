@@ -1,37 +1,89 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Script/Create.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Background/Bg1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Script/Label.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Button/Up.PNG" type="Texture" id=4]
+[ext_resource path="res://Assets/Button/Down.PNG" type="Texture" id=5]
+[ext_resource path="res://Assets/Font/Pixeled.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/Audio/menu select.wav" type="AudioStream" id=7]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=3]
+Button/styles/hover = null
+Button/styles/normal = null
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 6 )
 
 [node name="Create" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1600.0
+margin_bottom = 1280.0
+rect_scale = Vector2( 0.8, 0.563 )
+texture = ExtResource( 2 )
+
+[node name="Log In" type="TextureButton" parent="."]
+margin_left = 472.0
+margin_top = 376.0
+margin_right = 919.0
+margin_bottom = 553.0
+rect_scale = Vector2( 0.7, 0.7 )
+texture_normal = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Log In"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -73.0
-margin_top = -52.0
-margin_right = 73.0
-margin_bottom = 52.0
+margin_left = -17.7858
+margin_top = -42.7858
+margin_right = 58.2142
+margin_bottom = 3.21423
 rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 73, 52 )
-custom_constants/separation = 11
-alignment = 1
-
-[node name="Sign Up" type="Button" parent="VBoxContainer"]
-margin_top = 26.0
-margin_right = 146.0
-margin_bottom = 46.0
-text = "Sign Up"
-
-[node name="Log In" type="Button" parent="VBoxContainer"]
-margin_top = 57.0
-margin_right = 146.0
-margin_bottom = 77.0
+rect_pivot_offset = Vector2( 38, 23 )
+custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Log In"
+script = ExtResource( 3 )
 
-[connection signal="pressed" from="VBoxContainer/Sign Up" to="." method="_on_Sign_Up_pressed"]
-[connection signal="pressed" from="VBoxContainer/Log In" to="." method="_on_Log_In_pressed"]
+[node name="Sign Up" type="TextureButton" parent="."]
+margin_left = 496.0
+margin_top = 224.0
+margin_right = 943.0
+margin_bottom = 432.0
+rect_scale = Vector2( 0.7, 0.7 )
+theme = SubResource( 3 )
+texture_normal = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="Sign Up"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -63.5
+margin_top = -35.4286
+margin_right = 28.5
+margin_bottom = 10.5714
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 46, 23 )
+custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Sign Up"
+script = ExtResource( 3 )
+
+[node name="Menu Select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[connection signal="mouse_entered" from="Log In" to="Log In/Label" method="hovered"]
+[connection signal="mouse_exited" from="Log In" to="Log In/Label" method="unhovered"]
+[connection signal="pressed" from="Log In" to="." method="_on_Log_In_pressed"]
+[connection signal="mouse_entered" from="Sign Up" to="Sign Up/Label" method="hovered"]
+[connection signal="mouse_exited" from="Sign Up" to="Sign Up/Label" method="unhovered"]
+[connection signal="pressed" from="Sign Up" to="." method="_on_Sign_Up_pressed"]

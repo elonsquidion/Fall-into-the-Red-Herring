@@ -15,7 +15,7 @@ func _on_LoginButton_pressed():
 	SilentWolf.Players.player_name = username
 	SilentWolf.Auth.login_player(username, password, remember_me)
 	show_processing_label()
-	
+
 func _on_login_succeeded():
 	var scene_name = "res://Scenes/Menu.tscn"
 	SWLogger.info("logged in as: " + str(SilentWolf.Auth.logged_in_player))
@@ -37,5 +37,5 @@ func show_processing_label():
 func hide_processing_label():
 	$"FormContainer/ProcessingLabel".hide()
 
-func _on_LinkButton_pressed():
-	get_tree().change_scene(SilentWolf.auth_config.reset_password_scene)
+func _on_LoginButton_mouse_entered():
+	$"Menu Select".play()
