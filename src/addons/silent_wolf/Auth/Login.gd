@@ -36,3 +36,6 @@ func show_processing_label():
 	
 func hide_processing_label():
 	$"FormContainer/ProcessingLabel".hide()
+
+func _on_LoginButton_mouse_entered():
+	$"Menu Select".play()

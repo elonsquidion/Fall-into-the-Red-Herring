@@ -14,7 +14,6 @@ func _ready():
 	SilentWolf.configure_scores({
 		"open_scene_on_close": "res://Scenes/Menu.tscn"
 	})
-	#	SilentWolf.Scores.wipe_leaderboard()
 	var auth_main = "res://Scenes/auth_main.tscn"
 	SilentWolf.configure_auth_redirect_to_scene(auth_main)
-#	yield(SilentWolf.Players.get_player_data("elons13"), "sw_player_data_received")
+#	SilentWolf.Scores.wipe_leaderboard()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://addons/silent_wolf/Auth/Login.gd" type="Script" id=1]
 [ext_resource path="res://addons/silent_wolf/common/SWButton.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Font/I-pixel-u.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Assets/Font/Pixeled.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Assets/Audio/menu select.wav" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFont" id=4]
 size = 64
@@ -219,5 +220,10 @@ custom_fonts/font = SubResource( 5 )
 text = "Processing..."
 align = 1
 
+[node name="Menu Select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[connection signal="mouse_entered" from="BackButton" to="." method="_on_LoginButton_mouse_entered"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="mouse_entered" from="FormContainer/LoginButton" to="." method="_on_LoginButton_mouse_entered"]
 [connection signal="pressed" from="FormContainer/LoginButton" to="." method="_on_LoginButton_pressed"]
