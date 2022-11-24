@@ -6,18 +6,23 @@ const highscore_file = "user://highscore.txt"
 const heart_size = 64
 export var max_hp = 5
 
+var immune = false
+
 var shield_hp = 0
 var hit_points = max_hp
 var score = 0
 var highscore = 0
 var direction = Vector2.ZERO
 var movement = Vector2.ZERO
+var new_high
+
 
 func _ready():
 #	reset_highscore()
 	load_score()
 	var score_bar = get_parent().get_node("UI/Score")
 	var hp_bar = get_parent().get_node("UI/HP Bar")
+	new_high = false
 	score_bar.text = "Highscore: " + str(highscore)
 	hp_bar.rect_size.x = hit_points * heart_size
 
@@ -28,8 +33,7 @@ func _physics_process(_delta):
 	mechanics()
 	
 	if Input.is_action_just_pressed("activate_buff"):
-		buff()
-		
+		pass
 	movement = move_and_slide(movement)
 
 func load_score():
@@ -53,34 +57,25 @@ func reset_highscore():
 	f.close()
 
 
-func buff():
-	if hit_points == 0:
-		return false
-	else:
-		emit_signal("buff_activated", "Buff")
-	# kasih percabangan di sini, si user mau buff yang mana
-
-func debuff():
+func take_buff(take_buff : Area2D):
+	emit_signal("buff_activated", "Buff")
+	immune = true
+	
+	
+		
+func take_debuff(take_debuff : Area2D):
 	emit_signal("buff_activated", "Debuff")
-	# kasih percabangan juga sama
+	if Input.is_action_just_pressed("right") and position.x < 1248:
+		global_position.x -= 64
+	elif Input.is_action_just_pressed("left") and position.x > 32:
+		global_position.x += 64
+		
+	if Input.is_action_just_pressed("down") and position.y < 608:
+		global_position.y -= 64
+	elif Input.is_action_just_pressed("up") and position.y > 204:
+		global_position.y += 64
+	
 
-func shield():
-	pass
-
-func immune():
-	pass
-
-func movement_speed():
-	pass
-
-func reverse():
-	pass
-
-func blindness():
-	pass
-
-func slow_movement():
-	pass
 
 func mechanics():
 	if Input.is_action_just_pressed("right") and position.x < 1248:
@@ -96,8 +91,13 @@ func mechanics():
 
 func take_damage(body, damage):
 	var hp_bar = body.get_parent().get_node("UI/HP Bar")
-	body.hit_points -= damage
-	hp_bar.rect_size.x = body.hit_points * body.heart_size
+	if immune == false :
+		body.hit_points -= damage
+		hp_bar.rect_size.x = body.hit_points * body.heart_size
+	else:
+		damage = 0
+		body.hit_points -= damage
+		hp_bar.rect_size.x = body.hit_points * body.heart_size
 	if body.hit_points == 0:
 		if body.new_high:
 			SilentWolf.Scores.persist_score(SilentWolf.Players.player_name, Global.highscore)
@@ -110,6 +110,7 @@ func add_point(body, point):
 	body.score += point
 	score_bar.text = "Score: " +  str(body.score)
 	if body.score <= body.highscore:
+		new_high = true
 		highscore_bar.text = "Highscore: " + str(body.highscore)
 	else:
 		highscore_bar.text = "Highscore: " + str(body.highscore + 1)

@@ -145,7 +145,6 @@ text = "Leaderboard"
 
 [node name="Menu Select" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-bus = "sfx"
 
 [connection signal="mouse_entered" from="Start" to="Start/Label" method="hovered"]
 [connection signal="mouse_exited" from="Start" to="Start/Label" method="unhovered"]
