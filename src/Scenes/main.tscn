@@ -1,141 +1,136 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Script/main.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Spike Setter.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Script/Status.gd" type="Script" id=4]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Script/Debuff Status.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Script/Status.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Background/Boss BG.PNG" type="Texture" id=3]
+[ext_resource path="res://Assets/Character/Character UI.PNG" type="Texture" id=4]
+[ext_resource path="res://Assets/Heart/100% Heart.PNG" type="Texture" id=5]
+[ext_resource path="res://Assets/Character/Boss/Boss sprite 1.PNG" type="Texture" id=6]
+[ext_resource path="res://Scenes/Pop Up Buff.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Pop Up Debuff.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Spike Setter.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Script/main.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Font/I-pixel-u.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://Assets/Character/Boss/Boss sprit 3.PNG" type="Texture" id=13]
+[ext_resource path="res://Assets/Character/Boss/Boss sprite 2.PNG" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 213.333, 8.84375 )
 
-[node name="main" type="Node2D"]
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 720.0 ],
-"_edit_vertical_guides_": [ 1280.0 ]
-}
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 12 )
 
-[node name="Player" parent="." instance=ExtResource( 5 )]
-pause_mode = 2
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 6 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="main" type="Node2D"]
+script = ExtResource( 11 )
+
+[node name="bg" type="TextureRect" parent="."]
+margin_right = 1600.0
+margin_bottom = 1280.0
+rect_scale = Vector2( 0.8, 0.563 )
+texture = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 672, 544 )
+collision_mask = 5
 
 [node name="Vanisher" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="Area Vanisher" type="CollisionShape2D" parent="Vanisher"]
 position = Vector2( 640, 747.578 )
 scale = Vector2( 3, 0.5 )
 shape = SubResource( 2 )
 
-[node name="Spike Setter" parent="." instance=ExtResource( 3 )]
-
 [node name="UI" type="CanvasLayer" parent="."]
 
+[node name="TextureRect" type="TextureRect" parent="UI"]
+margin_left = 913.0
+margin_top = 1.0
+margin_right = 1649.0
+margin_bottom = 418.0
+rect_scale = Vector2( 0.5, 0.3 )
+texture = ExtResource( 4 )
+
 [node name="HP Bar" type="TextureRect" parent="UI"]
-margin_left = 984.0
-margin_top = 40.0
-margin_right = 1048.0
-margin_bottom = 104.0
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 1 )
-expand = true
+margin_left = 991.0
+margin_top = 126.0
+margin_right = 1191.0
+margin_bottom = 326.0
+rect_scale = Vector2( 0.2, 0.2 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 5 )
 stretch_mode = 2
 
-[node name="HP" type="RichTextLabel" parent="UI/HP Bar"]
-margin_left = -64.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = 32.0
-rect_scale = Vector2( 2, 2 )
-text = "HP:"
-
 [node name="Buff Status" type="Label" parent="UI"]
-margin_left = 1160.0
-margin_top = 88.0
-margin_right = 1249.0
-margin_bottom = 102.0
-text = "Status: -"
-script = ExtResource( 4 )
+margin_left = 964.0
+margin_top = 83.0
+margin_right = 1053.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 3 )
+script = ExtResource( 2 )
 
 [node name="Buff Time" type="Timer" parent="UI/Buff Status"]
 wait_time = 5.0
 one_shot = true
 
-[node name="Score" type="Label" parent="UI"]
-margin_left = 1160.0
-margin_top = 32.0
+[node name="Debuff Status" type="Label" parent="UI"]
+margin_left = 1122.0
+margin_top = 83.0
 margin_right = 1211.0
-margin_bottom = 46.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 3 )
+script = ExtResource( 1 )
+
+[node name="Buff Time" type="Timer" parent="UI/Debuff Status"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Score" type="Label" parent="UI"]
+margin_left = 1137.0
+margin_top = 22.0
+margin_right = 1203.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 3 )
 text = "Score: 0"
+clip_text = true
 
 [node name="Highscore" type="Label" parent="UI"]
-margin_left = 1160.0
-margin_top = 48.0
-margin_right = 1240.0
-margin_bottom = 62.0
+margin_left = 1135.0
+margin_top = 45.0
+margin_right = 1227.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 3 )
 text = "Highscore: 0"
+clip_text = true
 
-[node name="Player Name" type="Label" parent="UI"]
-margin_left = 984.0
-margin_top = 8.0
-margin_right = 1064.0
-margin_bottom = 22.0
-rect_scale = Vector2( 2, 2 )
+[node name="Boss" type="Node2D" parent="."]
 
-[node name="Start" type="Label" parent="UI"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -40.0
-margin_top = -7.0
-margin_right = 40.0
-margin_bottom = 7.0
-rect_scale = Vector2( 4, 4 )
-rect_pivot_offset = Vector2( 40, 7 )
-text = "Start"
-align = 1
+[node name="Sprite" type="AnimatedSprite" parent="Boss"]
+position = Vector2( 627, 164 )
+scale = Vector2( 0.85, 0.6 )
+frames = SubResource( 4 )
+frame = 1
+playing = true
 
-[node name="Game Over" type="Control" parent="UI"]
-pause_mode = 2
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Spike Setter" parent="Boss" instance=ExtResource( 10 )]
+position = Vector2( 17, 130 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Game Over"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -50.5
-margin_top = -47.5
-margin_right = 50.5
-margin_bottom = 47.5
-rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 50, 47 )
-custom_constants/separation = 12
+[node name="Pop Up Buff" parent="Boss" instance=ExtResource( 7 )]
+position = Vector2( 1, 110 )
 
-[node name="Label" type="Label" parent="UI/Game Over/VBoxContainer"]
-margin_right = 101.0
-margin_bottom = 31.0
-text = "Game Over!
-"
-align = 1
-
-[node name="Retry" type="Button" parent="UI/Game Over/VBoxContainer"]
-margin_top = 43.0
-margin_right = 101.0
-margin_bottom = 63.0
-text = "Retry"
-
-[node name="Menu" type="Button" parent="UI/Game Over/VBoxContainer"]
-margin_top = 75.0
-margin_right = 101.0
-margin_bottom = 95.0
-text = "Back To Menu"
+[node name="Pop Up Debuff" parent="Boss" instance=ExtResource( 9 )]
+position = Vector2( 1, 113 )
 
 [connection signal="area_entered" from="Vanisher" to="." method="_on_Vanisher_area_entered"]
 [connection signal="timeout" from="UI/Buff Status/Buff Time" to="UI/Buff Status" method="_on_Buff_Time_timeout"]
-[connection signal="pressed" from="UI/Game Over/VBoxContainer/Retry" to="." method="_on_Retry_pressed"]
-[connection signal="pressed" from="UI/Game Over/VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="timeout" from="UI/Debuff Status/Buff Time" to="UI/Debuff Status" method="_on_Buff_Time_timeout"]

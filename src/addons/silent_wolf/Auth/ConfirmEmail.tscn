@@ -4,6 +4,7 @@
 [ext_resource path="res://addons/silent_wolf/common/SWButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=3]
 
+
 [sub_resource type="DynamicFontData" id=13]
 font_path = "res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf"
 

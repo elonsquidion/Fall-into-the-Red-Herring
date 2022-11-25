@@ -1,101 +1,127 @@
 extends KinematicBody2D
 
+# warning-ignore:unused_signal
 signal buff_activated(status)
+# warning-ignore:unused_signal
+signal debuff_activated(status)
 
 const highscore_file = "user://highscore.txt"
-const heart_size = 64
-export var max_hp = 5
+const heart_size = 50
+export var max_hp = 24
 
-onready var start = get_parent().get_node("UI/Start")
-onready var game_over = get_parent().get_node("UI/Game Over")
+var immune = false
+var reverse = false
+var shield_hp = 0
 var hit_points = max_hp
 var score = 0
+var highscore = 0
 var direction = Vector2.ZERO
 var movement = Vector2.ZERO
-var new_high = false
+var new_high
+
+onready var animation = get_node("Sprite")
 
 func _ready():
+#	reset_highscore()
+	load_score()
 	var score_bar = get_parent().get_node("UI/Highscore")
 	var hp_bar = get_parent().get_node("UI/HP Bar")
 	new_high = false
-	start.visible = true
-	score_bar.text = "Highscore: " + str(Global.highscore)
+	score_bar.text = "Highscore: " + str(highscore)
 	hp_bar.rect_size.x = hit_points * heart_size
 
-func _input(event):
-	if event is InputEventKey:
-		if event.pressed and start.visible:
-			start.set_visible(false)
-			get_tree().paused = false
-
 func _process(_delta):
-	Global.highscore = max(Global.highscore, score)
+	highscore = max(highscore, score)
 
 func _physics_process(_delta):
-	mechanics()
-	
-	if Input.is_action_just_pressed("activate_buff"):
-		buff()
-		
-	movement = move_and_slide(movement)
-
-func buff():
-	if hit_points == 0:
-		return false
+	if reverse:
+		reverse_mechanics()
 	else:
-		emit_signal("buff_activated", "Buff")
-	# kasih percabangan di sini, si user mau buff yang mana
+		mechanics()
 
-func debuff():
-	emit_signal("buff_activated", "Debuff")
-	# kasih percabangan juga sama
+func load_score():
+	var f = File.new()
+	if f.file_exists(highscore_file):
+		f.open(highscore_file, File.READ)
+		var content = f.get_as_text()
+		highscore = int(content)
+		f.close()
 
-func shield():
-	pass
+func save_score(new):
+	var f = File.new()
+	f.open(highscore_file, File.WRITE)
+	f.store_string(str(new))
+	f.close()
 
-func immune():
-	pass
+func reset_highscore():
+	var f = File.new()
+	f.open(highscore_file, File.WRITE)
+	f.store_string(str(0))
+	f.close()
 
-func movement_speed():
-	pass
 
-func reverse():
-	pass
+func take_buff(player):
+	player.emit_signal("buff_activated", "Immune")
+	player.immune = true
+	
+func take_debuff(player):
+	player.reverse = true
+	player.emit_signal("debuff_activated", "Reverse")
 
-func blindness():
-	pass
-
-func slow_movement():
-	pass
+func reverse_mechanics():
+	if Input.is_action_pressed("right") and position.x > 32:
+		animation.play("left")
+		global_position.x -= 10
+	elif Input.is_action_pressed("left") and position.x < 1248:
+		animation.play("right")
+		global_position.x += 10	
+	elif Input.is_action_pressed("down") and position.y > 204:
+		animation.play("back")
+		global_position.y -= 10
+	elif Input.is_action_pressed("up") and position.y < 608:
+		animation.play("front")
+		global_position.y += 10
 
 func mechanics():
-	if Input.is_action_just_pressed("right") and position.x < 1248:
-		global_position.x += 64
-	elif Input.is_action_just_pressed("left") and position.x > 32:
-		global_position.x -= 64
-		
-	if Input.is_action_just_pressed("down") and position.y < 608:
-		global_position.y += 64
-	elif Input.is_action_just_pressed("up") and position.y > 204:
-		global_position.y -= 64
+	if Input.is_action_pressed("right") and position.x < 1248:
+		animation.play("right")
+		global_position.x += 10
+	elif Input.is_action_pressed("left") and position.x > 32:
+		animation.play("left")
+		global_position.x -= 10
+	elif Input.is_action_pressed("down") and position.y < 608:
+		animation.play("front")
+		global_position.y += 10
+	elif Input.is_action_pressed("up") and position.y > 204:
+		animation.play("back")
+		global_position.y -= 10
+
 
 func take_damage(body, damage):
 	var hp_bar = body.get_parent().get_node("UI/HP Bar")
-	body.hit_points -= damage
-	hp_bar.rect_size.x = body.hit_points * body.heart_size
-	if body.hit_points == 0:
+	if body.immune == false :
+		body.hit_points -= damage
+		hp_bar.rect_size.x = body.hit_points * body.heart_size
+	else:
+		damage = 0
+		body.hit_points -= damage
+		hp_bar.rect_size.x = body.hit_points * body.heart_size
+	if body.hit_points <= 0:
 		if body.new_high:
 			SilentWolf.Scores.persist_score(SilentWolf.Players.player_name, Global.highscore)
-		body.game_over.visible = true
-		body.get_tree().paused = true
+		body.get_tree().reload_current_scene()
+#		body.game_over.visible = true
+#		body.get_tree().paused = true
 
-func add_point(body, point):
+func add_point(body, point, area):
 	var score_bar = body.get_parent().get_node("UI/Score")
 	var highscore_bar = body.get_parent().get_node("UI/Highscore")
-	body.score += point
-	score_bar.text = "Score: " +  str(body.score)
-	if body.score <= Global.highscore:
-		highscore_bar.text = "Highscore: " + str(Global.highscore)
+	if not area.passed:
+		body.score += point
+		score_bar.text = "Score: " +  str(body.score)
+		area.passed = true
+	if body.score <= body.highscore:
+		new_high = true
+		highscore_bar.text = "Highscore: " + str(body.highscore)
 	else:
-		body.new_high = true
-		highscore_bar.text = "Highscore: " + str(Global.highscore + 1)
+		highscore_bar.text = "Highscore: " + str(body.highscore + 1)

@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/Script/Credit.gd" type="Script" id=10]
 [ext_resource path="res://Assets/Audio/menu select.wav" type="AudioStream" id=11]
 
+
 [sub_resource type="StyleBoxFlat" id=4]
 
 [sub_resource type="DynamicFont" id=1]
@@ -145,7 +146,6 @@ text = "Leaderboard"
 
 [node name="Menu Select" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-bus = "sfx"
 
 [connection signal="mouse_entered" from="Start" to="Start/Label" method="hovered"]
 [connection signal="mouse_exited" from="Start" to="Start/Label" method="unhovered"]

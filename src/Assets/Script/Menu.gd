@@ -1,6 +1,7 @@
 extends Control
 
 const highscore_file = "user://highscore.txt"
+var highscore = 0
 
 func _ready():
 	$Name.text = "Welcome, " + str(SilentWolf.Players.player_name) + "!"
