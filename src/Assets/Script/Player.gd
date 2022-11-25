@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal buff_activated(status)
+signal debuff_activated(status)
 
 const highscore_file = "user://highscore.txt"
 const heart_size = 64
@@ -57,15 +58,12 @@ func reset_highscore():
 
 
 func take_buff(player):
-	print("jancok")
-	player.emit_signal("buff_activated", "Buff")
+	player.emit_signal("buff_activated", "Immune")
 	player.immune = true
 	
-	
-		
 func take_debuff(player):
 	player.reverse = true
-	player.emit_signal("buff_activated", "Debuff")
+	player.emit_signal("debuff_activated", "Reverse")
 
 func reverse_mechanics():
 	if Input.is_action_just_pressed("right") and position.x > 32:
@@ -98,7 +96,6 @@ func take_damage(body, damage):
 		body.hit_points -= damage
 		hp_bar.rect_size.x = body.hit_points * body.heart_size
 	else:
-		print("hehe gak turunnn")
 		damage = 0
 		body.hit_points -= damage
 		hp_bar.rect_size.x = body.hit_points * body.heart_size
