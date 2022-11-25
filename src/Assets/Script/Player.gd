@@ -106,11 +106,13 @@ func take_damage(body, damage):
 #		body.game_over.visible = true
 #		body.get_tree().paused = true
 
-func add_point(body, point):
+func add_point(body, point, area):
 	var score_bar = body.get_parent().get_node("UI/Score")
 	var highscore_bar = body.get_parent().get_node("UI/Highscore")
-	body.score += point
-	score_bar.text = "Score: " +  str(body.score)
+	if not area.passed:
+		body.score += point
+		score_bar.text = "Score: " +  str(body.score)
+		area.passed = true
 	if body.score <= body.highscore:
 		new_high = true
 		highscore_bar.text = "Highscore: " + str(body.highscore)
