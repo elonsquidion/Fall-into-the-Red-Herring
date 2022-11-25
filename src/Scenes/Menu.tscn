@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Script/Menu.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Leaderboard/Bar Blank.PNG" type="Texture" id=2]
 [ext_resource path="res://Assets/Background/Bg1.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Font/Pixeled.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/Font/I-pixel-u.ttf" type="DynamicFontData" id=5]
@@ -9,11 +8,7 @@
 [ext_resource path="res://Assets/Button/Down.PNG" type="Texture" id=7]
 [ext_resource path="res://Assets/Button/Big.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Script/Label.gd" type="Script" id=9]
-[ext_resource path="res://Assets/Script/Credit.gd" type="Script" id=10]
 [ext_resource path="res://Assets/Audio/menu select.wav" type="AudioStream" id=11]
-
-
-[sub_resource type="StyleBoxFlat" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 5 )
@@ -34,16 +29,6 @@ margin_right = 1600.0
 margin_bottom = 1280.0
 rect_scale = Vector2( 0.8, 0.563 )
 texture = ExtResource( 3 )
-
-[node name="Credit Butt" type="MenuButton" parent="."]
-margin_left = 16.0
-margin_top = 664.0
-margin_right = 92.0
-margin_bottom = 740.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_styles/normal = SubResource( 4 )
-icon = ExtResource( 2 )
-script = ExtResource( 10 )
 
 [node name="Name" type="Label" parent="."]
 margin_left = 24.0
@@ -136,13 +121,29 @@ custom_fonts/font = SubResource( 2 )
 text = "Quit"
 script = ExtResource( 9 )
 
-[node name="Leaderboard" type="Button" parent="."]
-margin_left = 24.0
-margin_top = 616.0
-margin_right = 115.0
-margin_bottom = 636.0
-action_mode = 0
+[node name="Leaderboard" type="TextureButton" parent="."]
+margin_left = 32.0
+margin_top = 610.0
+margin_right = 479.0
+margin_bottom = 787.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="Leaderboard"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -86.8334
+margin_top = -25.1667
+margin_right = 89.1666
+margin_bottom = 20.8333
+rect_scale = Vector2( 1.5, 1.5 )
+rect_pivot_offset = Vector2( 28, 46 )
+custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Leaderboard"
+script = ExtResource( 9 )
 
 [node name="Menu Select" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
@@ -156,4 +157,6 @@ stream = ExtResource( 11 )
 [connection signal="mouse_entered" from="Quit" to="Quit/Label" method="hovered"]
 [connection signal="mouse_exited" from="Quit" to="Quit/Label" method="unhovered"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
+[connection signal="mouse_entered" from="Leaderboard" to="Leaderboard/Label" method="hovered"]
+[connection signal="mouse_exited" from="Leaderboard" to="Leaderboard/Label" method="unhovered"]
 [connection signal="pressed" from="Leaderboard" to="." method="_on_Leaderboard_pressed"]

@@ -12,7 +12,6 @@
 [ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Assets/Audio/menu select.wav" type="AudioStream" id=11]
 
-
 [sub_resource type="DynamicFont" id=4]
 size = 64
 font_data = ExtResource( 8 )
@@ -152,7 +151,6 @@ rect_min_size = Vector2( 330, 75 )
 custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
 custom_fonts/font = SubResource( 7 )
 custom_styles/normal = SubResource( 13 )
-text = "elons13"
 max_length = 20
 caret_blink = true
 
@@ -177,7 +175,6 @@ rect_min_size = Vector2( 330, 75 )
 custom_colors/font_color = Color( 0.0627451, 0.207843, 0.196078, 1 )
 custom_fonts/font = SubResource( 8 )
 custom_styles/normal = SubResource( 14 )
-text = "D3lon2004"
 max_length = 30
 secret = true
 

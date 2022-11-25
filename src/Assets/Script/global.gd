@@ -2,7 +2,6 @@ extends Node
 
 #var player_name
 var highscore = 0
-var audio = AudioStreamPlayer
 
 func _ready():
 	SilentWolf.configure({

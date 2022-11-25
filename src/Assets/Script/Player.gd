@@ -14,16 +14,16 @@ var reverse = false
 var shield_hp = 0
 var hit_points = max_hp
 var score = 0
-var highscore = 0
+var highscore = Global.highscore
 var direction = Vector2.ZERO
 var movement = Vector2.ZERO
 var new_high
 
 onready var animation = get_node("Sprite")
+onready var dmg_audio = $"../dmg"
+onready var fts_audio = $"../footstep"
 
 func _ready():
-#	reset_highscore()
-	load_score()
 	var score_bar = get_parent().get_node("UI/Highscore")
 	var hp_bar = get_parent().get_node("UI/HP Bar")
 	new_high = false
@@ -39,27 +39,6 @@ func _physics_process(_delta):
 	else:
 		mechanics()
 
-func load_score():
-	var f = File.new()
-	if f.file_exists(highscore_file):
-		f.open(highscore_file, File.READ)
-		var content = f.get_as_text()
-		highscore = int(content)
-		f.close()
-
-func save_score(new):
-	var f = File.new()
-	f.open(highscore_file, File.WRITE)
-	f.store_string(str(new))
-	f.close()
-
-func reset_highscore():
-	var f = File.new()
-	f.open(highscore_file, File.WRITE)
-	f.store_string(str(0))
-	f.close()
-
-
 func take_buff(player):
 	player.emit_signal("buff_activated", "Immune")
 	player.immune = true
@@ -70,29 +49,37 @@ func take_debuff(player):
 
 func reverse_mechanics():
 	if Input.is_action_pressed("right") and position.x > 32:
+		fts_audio.playing = true
 		animation.play("left")
 		global_position.x -= 10
 	elif Input.is_action_pressed("left") and position.x < 1248:
+		fts_audio.playing = true
 		animation.play("right")
 		global_position.x += 10	
 	elif Input.is_action_pressed("down") and position.y > 204:
+		fts_audio.playing = true
 		animation.play("back")
 		global_position.y -= 10
 	elif Input.is_action_pressed("up") and position.y < 608:
+		fts_audio.playing = true
 		animation.play("front")
 		global_position.y += 10
 
 func mechanics():
 	if Input.is_action_pressed("right") and position.x < 1248:
+		fts_audio.playing = true
 		animation.play("right")
 		global_position.x += 10
 	elif Input.is_action_pressed("left") and position.x > 32:
+		fts_audio.playing = true
 		animation.play("left")
 		global_position.x -= 10
 	elif Input.is_action_pressed("down") and position.y < 608:
+		fts_audio.playing = true
 		animation.play("front")
 		global_position.y += 10
 	elif Input.is_action_pressed("up") and position.y > 204:
+		fts_audio.playing = true
 		animation.play("back")
 		global_position.y -= 10
 
@@ -100,6 +87,7 @@ func mechanics():
 func take_damage(body, damage):
 	var hp_bar = body.get_parent().get_node("UI/HP Bar")
 	if body.immune == false :
+		body.dmg_audio.playing = true
 		body.hit_points -= damage
 		hp_bar.rect_size.x = body.hit_points * body.heart_size
 	else:
@@ -109,9 +97,8 @@ func take_damage(body, damage):
 	if body.hit_points <= 0:
 		if body.new_high:
 			SilentWolf.Scores.persist_score(SilentWolf.Players.player_name, Global.highscore)
-		body.get_tree().reload_current_scene()
-#		body.game_over.visible = true
-#		body.get_tree().paused = true
+		body.back_menu()
+
 
 func add_point(body, point, area):
 	var score_bar = body.get_parent().get_node("UI/Score")
@@ -125,3 +112,8 @@ func add_point(body, point, area):
 		highscore_bar.text = "Highscore: " + str(body.highscore)
 	else:
 		highscore_bar.text = "Highscore: " + str(body.highscore + 1)
+
+func back_menu():
+	get_tree().change_scene("res://Scenes/Menu.tscn")
+	get_parent().get_node("bg2").queue_free()
+	bg_music.playing = true

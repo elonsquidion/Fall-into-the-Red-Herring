@@ -12,7 +12,6 @@
 [ext_resource path="res://Assets/Font/I-pixel-u.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Assets/Audio/menu select.wav" type="AudioStream" id=11]
 
-
 [sub_resource type="DynamicFont" id=4]
 size = 64
 font_data = ExtResource( 10 )
@@ -91,6 +90,8 @@ font_data = ExtResource( 3 )
 [sub_resource type="StyleBoxTexture" id=18]
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 416, 112 )
+margin_left = 15.0
+margin_right = 15.0
 
 [sub_resource type="DynamicFont" id=12]
 size = 32
