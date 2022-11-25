@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/reverse2.png-b0249d2200b91ca1c551019d5b045d33.stex"
+path="res://.import/right4.png-c59846315554d93f01a4a63b728ce415.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Buff-Debuff/reverse2.png"
-dest_files=[ "res://.import/reverse2.png-b0249d2200b91ca1c551019d5b045d33.stex" ]
+source_file="res://Assets/Character/Player/right/right4.png"
+dest_files=[ "res://.import/right4.png-c59846315554d93f01a4a63b728ce415.stex" ]
 
 [params]
 

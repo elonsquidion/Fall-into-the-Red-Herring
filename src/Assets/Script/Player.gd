@@ -6,8 +6,11 @@ const highscore_file = "user://highscore.txt"
 const heart_size = 64
 export var max_hp = 5
 
+onready var _animated_sprite = $AnimatedSprite
+
 var immune = false
 var reverse = false
+
 var shield_hp = 0
 var hit_points = max_hp
 var score = 0
@@ -70,26 +73,35 @@ func take_debuff(player):
 func reverse_mechanics():
 	if Input.is_action_just_pressed("right") and position.x > 32:
 		global_position.x -= 64
+		_animated_sprite.play("left")
 	elif Input.is_action_just_pressed("left") and position.x < 1248:
 		global_position.x += 64
+		_animated_sprite.play("right")
 		
 	if Input.is_action_just_pressed("down") and position.y > 204:
 		global_position.y -= 64
+		_animated_sprite.play("back")
 	elif Input.is_action_just_pressed("up") and position.y < 608:
 		global_position.y += 64
+		_animated_sprite.play("front")
+	
 	
 
 
 func mechanics():
 	if Input.is_action_just_pressed("right") and position.x < 1248:
 		global_position.x += 64
+		_animated_sprite.play("right")
 	elif Input.is_action_just_pressed("left") and position.x > 32:
 		global_position.x -= 64
+		_animated_sprite.play("left")
 		
 	if Input.is_action_just_pressed("down") and position.y < 608:
 		global_position.y += 64
+		_animated_sprite.play("front")
 	elif Input.is_action_just_pressed("up") and position.y > 204:
 		global_position.y -= 64
+		_animated_sprite.play("back")
 
 
 func take_damage(body, damage):

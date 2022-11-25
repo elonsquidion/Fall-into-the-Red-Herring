@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/reverse3.png-3c9aff360e619ce590797638390722a4.stex"
+path="res://.import/speed movement.png-d984c0f113c37cf6778b33b1fab9b235.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Buff-Debuff/reverse3.png"
-dest_files=[ "res://.import/reverse3.png-3c9aff360e619ce590797638390722a4.stex" ]
+source_file="res://Assets/Buff-Debuff/buff/speed movement.png"
+dest_files=[ "res://.import/speed movement.png-d984c0f113c37cf6778b33b1fab9b235.stex" ]
 
 [params]
 
