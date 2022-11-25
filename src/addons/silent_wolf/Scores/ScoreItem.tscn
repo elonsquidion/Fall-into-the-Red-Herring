@@ -3,6 +3,7 @@
 [ext_resource path="res://Assets/Leaderboard/Bar Blank.PNG" type="Texture" id=1]
 [ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
 
+
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.772549, 0.772549, 0.678431, 1 )
 

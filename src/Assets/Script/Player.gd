@@ -6,8 +6,8 @@ signal buff_activated(status)
 signal debuff_activated(status)
 
 const highscore_file = "user://highscore.txt"
-const heart_size = 64
-export var max_hp = 5
+const heart_size = 50
+export var max_hp = 24
 
 var immune = false
 var reverse = false
@@ -19,6 +19,7 @@ var direction = Vector2.ZERO
 var movement = Vector2.ZERO
 var new_high
 
+onready var animation = get_node("Sprite")
 
 func _ready():
 #	reset_highscore()
@@ -68,28 +69,32 @@ func take_debuff(player):
 	player.emit_signal("debuff_activated", "Reverse")
 
 func reverse_mechanics():
-	if Input.is_action_just_pressed("right") and position.x > 32:
-		global_position.x -= 64
-	elif Input.is_action_just_pressed("left") and position.x < 1248:
-		global_position.x += 64
-		
-	if Input.is_action_just_pressed("down") and position.y > 204:
-		global_position.y -= 64
-	elif Input.is_action_just_pressed("up") and position.y < 608:
-		global_position.y += 64
-	
-
+	if Input.is_action_pressed("right") and position.x > 32:
+		animation.play("left")
+		global_position.x -= 10
+	elif Input.is_action_pressed("left") and position.x < 1248:
+		animation.play("right")
+		global_position.x += 10	
+	elif Input.is_action_pressed("down") and position.y > 204:
+		animation.play("back")
+		global_position.y -= 10
+	elif Input.is_action_pressed("up") and position.y < 608:
+		animation.play("front")
+		global_position.y += 10
 
 func mechanics():
-	if Input.is_action_just_pressed("right") and position.x < 1248:
-		global_position.x += 64
-	elif Input.is_action_just_pressed("left") and position.x > 32:
-		global_position.x -= 64
-		
-	if Input.is_action_just_pressed("down") and position.y < 608:
-		global_position.y += 64
-	elif Input.is_action_just_pressed("up") and position.y > 204:
-		global_position.y -= 64
+	if Input.is_action_pressed("right") and position.x < 1248:
+		animation.play("right")
+		global_position.x += 10
+	elif Input.is_action_pressed("left") and position.x > 32:
+		animation.play("left")
+		global_position.x -= 10
+	elif Input.is_action_pressed("down") and position.y < 608:
+		animation.play("front")
+		global_position.y += 10
+	elif Input.is_action_pressed("up") and position.y > 204:
+		animation.play("back")
+		global_position.y -= 10
 
 
 func take_damage(body, damage):
