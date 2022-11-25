@@ -14,7 +14,7 @@ func passed(is_passed):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var player_instance = player.instance()
-	connect("body_entered", player_instance, "take_buff")
+	$"Buff Icon".connect("body_entered", player_instance, "take_buff")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,5 +22,5 @@ func _ready():
 #	pass
 
 
-func _on_Buff_Icon_area_entered(player):
+func _on_Buff_Icon_body_entered(body):
 	queue_free()

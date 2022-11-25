@@ -7,7 +7,7 @@ const heart_size = 64
 export var max_hp = 5
 
 var immune = false
-
+var reverse = false
 var shield_hp = 0
 var hit_points = max_hp
 var score = 0
@@ -30,11 +30,10 @@ func _process(_delta):
 	highscore = max(highscore, score)
 
 func _physics_process(_delta):
-	mechanics()
-	
-	if Input.is_action_just_pressed("activate_buff"):
-		pass
-	movement = move_and_slide(movement)
+	if reverse:
+		reverse_mechanics()
+	else:
+		mechanics()
 
 func load_score():
 	var f = File.new()
@@ -57,22 +56,26 @@ func reset_highscore():
 	f.close()
 
 
-func take_buff(take_buff : Area2D):
-	emit_signal("buff_activated", "Buff")
-	immune = true
+func take_buff(player):
+	print("jancok")
+	player.emit_signal("buff_activated", "Buff")
+	player.immune = true
 	
 	
 		
-func take_debuff(take_debuff : Area2D):
-	emit_signal("buff_activated", "Debuff")
-	if Input.is_action_just_pressed("right") and position.x < 1248:
+func take_debuff(player):
+	player.reverse = true
+	player.emit_signal("buff_activated", "Debuff")
+
+func reverse_mechanics():
+	if Input.is_action_just_pressed("right") and position.x > 32:
 		global_position.x -= 64
-	elif Input.is_action_just_pressed("left") and position.x > 32:
+	elif Input.is_action_just_pressed("left") and position.x < 1248:
 		global_position.x += 64
 		
-	if Input.is_action_just_pressed("down") and position.y < 608:
+	if Input.is_action_just_pressed("down") and position.y > 204:
 		global_position.y -= 64
-	elif Input.is_action_just_pressed("up") and position.y > 204:
+	elif Input.is_action_just_pressed("up") and position.y < 608:
 		global_position.y += 64
 	
 
@@ -91,18 +94,20 @@ func mechanics():
 
 func take_damage(body, damage):
 	var hp_bar = body.get_parent().get_node("UI/HP Bar")
-	if immune == false :
+	if body.immune == false :
 		body.hit_points -= damage
 		hp_bar.rect_size.x = body.hit_points * body.heart_size
 	else:
+		print("hehe gak turunnn")
 		damage = 0
 		body.hit_points -= damage
 		hp_bar.rect_size.x = body.hit_points * body.heart_size
-	if body.hit_points == 0:
+	if body.hit_points <= 0:
 		if body.new_high:
 			SilentWolf.Scores.persist_score(SilentWolf.Players.player_name, Global.highscore)
-		body.game_over.visible = true
-		body.get_tree().paused = true
+		body.get_tree().reload_current_scene()
+#		body.game_over.visible = true
+#		body.get_tree().paused = true
 
 func add_point(body, point):
 	var score_bar = body.get_parent().get_node("UI/Score")
