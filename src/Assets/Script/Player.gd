@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
+# warning-ignore:unused_signal
 signal buff_activated(status)
+# warning-ignore:unused_signal
 signal debuff_activated(status)
 
 const highscore_file = "user://highscore.txt"
@@ -21,7 +23,7 @@ var new_high
 func _ready():
 #	reset_highscore()
 	load_score()
-	var score_bar = get_parent().get_node("UI/Score")
+	var score_bar = get_parent().get_node("UI/Highscore")
 	var hp_bar = get_parent().get_node("UI/HP Bar")
 	new_high = false
 	score_bar.text = "Highscore: " + str(highscore)

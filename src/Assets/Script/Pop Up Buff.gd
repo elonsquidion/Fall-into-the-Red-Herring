@@ -3,6 +3,9 @@ extends Node2D
 
 var immune_buff = preload("res://Scenes/Immune Buff.tscn")
 var spawn_time = null
+
+func _ready():
+	start_timer()
 	
 func _on_Timer_timeout():
 	var buffs = [immune_buff]
@@ -12,6 +15,5 @@ func _on_Timer_timeout():
 	add_child(buff)
 
 func start_timer():
-	spawn_time = rand_range(1,5)
+	spawn_time = rand_range(10, 20)
 	get_node("Timer").start(spawn_time)
-	

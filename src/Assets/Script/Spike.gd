@@ -14,5 +14,5 @@ func _ready():
 	timer.start(0.2)
 
 func spike_down():
-	position.y += 20
+	position.y += 64
 
