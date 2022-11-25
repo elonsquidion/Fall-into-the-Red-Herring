@@ -21,8 +21,11 @@ func _ready():
 	$"Spike Area/AnimatedSprite2".play("default")
 	$"Spike Area/AnimatedSprite3".play("default")
 	$"Spike Area/AnimatedSprite4".play("default")
+	$"Spike Area/AnimatedSprite5".play("default")
+	$"Spike Area/AnimatedSprite6".play("default")
 
 func spike_down():
+	$AudioStreamPlayer.playing = true
 	position.y += 64
 	
 func _physics_process(delta): 
@@ -33,3 +36,5 @@ func _physics_process(delta):
 	$"Spike Area/AnimatedSprite2".frames.set_animation_speed("default", 7/time)
 	$"Spike Area/AnimatedSprite3".frames.set_animation_speed("default", 7/time)
 	$"Spike Area/AnimatedSprite4".frames.set_animation_speed("default", 7/time)
+	$"Spike Area/AnimatedSprite5".frames.set_animation_speed("default", 7/time)
+	$"Spike Area/AnimatedSprite6".frames.set_animation_speed("default", 7/time)

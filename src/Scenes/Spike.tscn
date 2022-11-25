@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Script/Spike.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Buff-Debuff/output-onlinegiftools.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Audio/spike.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 38.7679, 20 )
+extents = Vector2( 35.9673, 20 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
@@ -54,32 +55,45 @@ extents = Vector2( 624.234, 6 )
 
 [node name="Spike" type="Area2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 480.0 ]
+}
 
 [node name="Spike Area" type="CollisionShape2D" parent="."]
-scale = Vector2( 7, 1 )
+scale = Vector2( 12, 1 )
 shape = SubResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Spike Area" groups=["anim"]]
-position = Vector2( -10, -12 )
-scale = Vector2( 0.0142857, 0.1 )
+position = Vector2( -6, -12 )
+scale = Vector2( 0.01, 0.1 )
 frames = SubResource( 3 )
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="Spike Area" groups=["anim"]]
-position = Vector2( 10, -12 )
-scale = Vector2( 0.0142857, 0.1 )
+position = Vector2( 6, -12 )
+scale = Vector2( 0.01, 0.1 )
 frames = SubResource( 3 )
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="Spike Area" groups=["anim"]]
-position = Vector2( -30, -12 )
-scale = Vector2( 0.0142857, 0.1 )
+position = Vector2( -18, -12 )
+scale = Vector2( 0.01, 0.1 )
 frames = SubResource( 3 )
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="Spike Area" groups=["anim"]]
+position = Vector2( 18, -12 )
+scale = Vector2( 0.01, 0.1 )
+frames = SubResource( 3 )
+
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="Spike Area" groups=["anim"]]
 position = Vector2( 30, -12 )
-scale = Vector2( 0.0142857, 0.1 )
+scale = Vector2( 0.01, 0.1 )
+frames = SubResource( 3 )
+
+[node name="AnimatedSprite6" type="AnimatedSprite" parent="Spike Area" groups=["anim"]]
+position = Vector2( -30, -12 )
+scale = Vector2( 0.01, 0.1 )
 frames = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
@@ -88,9 +102,12 @@ wait_time = 10.0
 [node name="Point Area" type="Area2D" parent="."]
 
 [node name="Left" type="CollisionShape2D" parent="Point Area"]
-position = Vector2( -898, -2 )
+position = Vector2( -1060, -7 )
 shape = SubResource( 2 )
 
 [node name="Right" type="CollisionShape2D" parent="Point Area"]
-position = Vector2( 896, -8 )
+position = Vector2( 1060, -7 )
 shape = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )

@@ -10,7 +10,6 @@ func _ready():
 	start_timer()
 
 func _on_Timer_timeout():
-	print("jancokk")
 	var spike_instance = spike.instance()
 	var index = randi() % spawn_positions.size()
 	spike_instance.global_position = spawn_positions[index].global_position
